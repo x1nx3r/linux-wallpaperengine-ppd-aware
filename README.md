@@ -11,7 +11,12 @@
     <a href="https://wpengine.alma.mu/"><img src="https://img.shields.io/badge/showcase_gallery-blue" alt="Compatibility gallery" /></a>
 </p>
 
-# 🖼️ Linux Wallpaper Engine
+# 🖼️ Linux Wallpaper Engine (PPD Aware Fork)
+
+> [!NOTE]
+> **About this fork:** This is a modified version of the original `linux-wallpaperengine`. It adds DBus-based power profile awareness to automatically pause the engine when running on battery (`--pause-on-battery`) or in power-saver mode (`--pause-on-power-saver`), heavily reducing GPU/CPU waste.
+>
+> **Why no Upstream PR?** The code for these features was completely "vibecoded" (AI-generated). Out of respect for the original maintainers, I am not submitting an upstream PR because I don't want to burden them with reviewing/maintaining AI-generated C++ code. Feel free to use this fork as you please!
 
 Bring **Wallpaper Engine**-style live wallpapers to Linux! This project allows you to run animated wallpapers from Steam’s Wallpaper Engine right on your desktop.
 

@@ -138,8 +138,8 @@ linux-wallpaperengine --assets-dir /path/to/assets
 Clone the repo:
 
 ```bash
-git clone --recurse-submodules https://github.com/Almamu/linux-wallpaperengine.git
-cd linux-wallpaperengine
+git clone --recurse-submodules https://github.com/x1nx3r/linux-wallpaperengine-ppd-aware.git
+cd linux-wallpaperengine-ppd-aware
 ```
 
 Build it:

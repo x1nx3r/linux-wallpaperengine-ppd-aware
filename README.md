@@ -17,6 +17,13 @@
 > **About this fork:** This is a modified version of the original `linux-wallpaperengine`. It adds DBus-based power profile awareness to automatically pause the engine when running on battery (`--pause-on-battery`) or in power-saver mode (`--pause-on-power-saver`), heavily reducing GPU/CPU waste.
 >
 > **Why no Upstream PR?** The code for these features was completely "vibecoded" (AI-generated). Out of respect for the original maintainers, I am not submitting an upstream PR because I don't want to burden them with reviewing/maintaining AI-generated C++ code. Feel free to use this fork as you please!
+>
+> **Dank Material Shell Plugin:** If you use [Dank Material Shell](https://github.com/dank-xyz/DankMaterialShell), a matching PPD-Aware wallpaper plugin is available. To install it, run:
+> ```bash
+> git clone https://github.com/x1nx3r/dms-wallpaperengine-ppd-aware.git
+> mkdir -p ~/.config/DankMaterialShell/plugins/
+> cp -r dms-wallpaperengine-ppd-aware ~/.config/DankMaterialShell/plugins/linuxWallpaperEnginePPDAware
+> ```
 
 Bring **Wallpaper Engine**-style live wallpapers to Linux! This project allows you to run animated wallpapers from Steam’s Wallpaper Engine right on your desktop.
 

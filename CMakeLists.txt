@@ -34,6 +34,7 @@ find_package(MPV REQUIRED)
 find_package(LZ4 REQUIRED)
 find_package(FFMPEG REQUIRED)
 find_package(PulseAudio REQUIRED)
+pkg_check_modules(DBUS dbus-1)
 
 set(ENABLE_OPT OFF)
 set(SPIRV_CROSS_FORCE_PIC ON)
@@ -347,6 +348,9 @@ set(COMMON_SOURCES
     src/WallpaperEngine/Render/Drivers/Detectors/FullScreenDetector.cpp
     src/WallpaperEngine/Render/Drivers/Detectors/FullScreenDetector.h
 
+    src/WallpaperEngine/Application/Detectors/PowerStateDetector.cpp
+    src/WallpaperEngine/Application/Detectors/PowerStateDetector.h
+
     src/WallpaperEngine/Render/Drivers/Output/Output.cpp
     src/WallpaperEngine/Render/Drivers/Output/Output.h
     src/WallpaperEngine/Render/Drivers/Output/GLFWWindowOutput.cpp
@@ -513,7 +517,8 @@ target_link_libraries (linux-wallpaperengine PUBLIC
     glfw
     libcef_lib
     libcef_dll_wrapper
-    argparse)
+    argparse
+    ${DBUS_LIBRARIES})
 
 if (BUILD_TESTING)
     target_link_libraries (tests PRIVATE
@@ -536,11 +541,21 @@ if (BUILD_TESTING)
         glfw
         libcef_lib
         libcef_dll_wrapper
-        argparse)
+        argparse
+        ${DBUS_LIBRARIES})
 endif()
 
 target_compile_definitions(linux-wallpaperengine PUBLIC ERRORONLY=${ERRORONLY})
 target_compile_definitions(linux-wallpaperengine PUBLIC DEMOMODE=${DEMOMODE})
+
+if(DBUS_FOUND)
+    target_compile_definitions(linux-wallpaperengine PUBLIC ENABLE_DBUS=1)
+    target_include_directories(linux-wallpaperengine PUBLIC ${DBUS_INCLUDE_DIRS})
+    if (BUILD_TESTING)
+        target_compile_definitions(tests PRIVATE ENABLE_DBUS=1)
+        target_include_directories(tests PRIVATE ${DBUS_INCLUDE_DIRS})
+    endif()
+endif()
 
 if (BUILD_TESTING)
     # tests should give as much output as possible

@@ -93,6 +93,10 @@ public:
 	    int maximumFPS;
 	    /** Indicates if pausing should happen when something goes fullscreen */
 	    bool pauseOnFullscreen;
+	    /** Indicates if pausing should happen when running on battery */
+	    bool pauseOnBattery;
+	    /** Indicates if pausing should happen when in power-saver mode */
+	    bool pauseOnPowerSaver;
 	    /**
 	     * Wayland-only: if true, only consider fullscreen toplevels that are also activated.
 	     * Useful for compositors with "virtual" fullscreen windows (e.g. scrollable tiling).
@@ -164,6 +168,8 @@ public:
             .mode = NORMAL_WINDOW,
             .maximumFPS = 30,
             .pauseOnFullscreen = true,
+            .pauseOnBattery = false,
+            .pauseOnPowerSaver = false,
             .pauseOnFullscreenOnlyWhenActive = false,
             .fullscreenPauseIgnoreAppIds = {},
             .window = {

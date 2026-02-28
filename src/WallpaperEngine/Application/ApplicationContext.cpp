@@ -413,6 +413,16 @@ void ApplicationContext::loadSettingsFromArgv () {
 	    this->settings.render.pauseOnFullscreenOnlyWhenActive = true;
 	});
 
+    performanceGroup.add_argument ("--pause-on-battery")
+	.help ("Pauses rendering when the system is running on battery power")
+	.flag ()
+	.action ([this] (const std::string& value) -> void { this->settings.render.pauseOnBattery = true; });
+
+    performanceGroup.add_argument ("--pause-on-power-saver")
+	.help ("Pauses rendering when the system power profile is set to power-saver")
+	.flag ()
+	.action ([this] (const std::string& value) -> void { this->settings.render.pauseOnPowerSaver = true; });
+
     performanceGroup.add_argument ("--fullscreen-pause-ignore-appid")
 	.help ("Wayland only: ignore fullscreen windows whose app_id contains this value (repeatable)")
 	.action ([this] (const std::string& value) -> void {

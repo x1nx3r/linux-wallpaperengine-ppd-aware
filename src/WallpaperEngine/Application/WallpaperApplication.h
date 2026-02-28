@@ -17,6 +17,8 @@
 #include "WallpaperEngine/Input/InputContext.h"
 #include "WallpaperEngine/WebBrowser/WebBrowserContext.h"
 
+#include "WallpaperEngine/Application/Detectors/PowerStateDetector.h"
+
 #include "WallpaperEngine/Data/Model/Types.h"
 
 #include <set>
@@ -146,6 +148,7 @@ private:
     std::unique_ptr<WallpaperEngine::Render::RenderContext> m_renderContext = nullptr;
     std::unique_ptr<WallpaperEngine::Render::Drivers::VideoDriver> m_videoDriver = nullptr;
     std::unique_ptr<WallpaperEngine::Render::Drivers::Detectors::FullScreenDetector> m_fullScreenDetector = nullptr;
+    std::unique_ptr<WallpaperEngine::Application::Detectors::PowerStateDetector> m_powerStateDetector = nullptr;
     std::unique_ptr<WallpaperEngine::WebBrowser::WebBrowserContext> m_browserContext = nullptr;
     std::mt19937 m_playlistRng { std::random_device {}() };
     bool m_isPaused = false;

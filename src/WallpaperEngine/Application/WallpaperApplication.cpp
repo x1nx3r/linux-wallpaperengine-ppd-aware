@@ -725,6 +725,8 @@ void WallpaperApplication::show () {
     this->prepareOutputs ();
     this->setupOpenGLDebugging ();
 
+    this->m_powerStateDetector = std::make_unique<WallpaperEngine::Application::Detectors::PowerStateDetector> (this->m_context);
+
     static time_t seconds;
     static struct tm* timeinfo;
 
@@ -802,12 +804,14 @@ void WallpaperApplication::show () {
 	}
 #endif /* DEMOMODE */
 	// check for fullscreen windows and wait until there's none fullscreen
-	if (this->m_fullScreenDetector->anythingFullscreen () && this->m_context.state.general.keepRunning) {
+	if ((this->m_fullScreenDetector->anythingFullscreen () || this->m_powerStateDetector->shouldPause ())
+	    && this->m_context.state.general.keepRunning) {
 	    this->m_isPaused = true;
 	    this->m_pauseStart = std::chrono::steady_clock::now ();
 
 	    m_renderContext->setPause (true);
-	    while (this->m_fullScreenDetector->anythingFullscreen () && this->m_context.state.general.keepRunning) {
+	    while ((this->m_fullScreenDetector->anythingFullscreen () || this->m_powerStateDetector->shouldPause ())
+		   && this->m_context.state.general.keepRunning) {
 		usleep (FULLSCREEN_CHECK_WAIT_TIME);
 	    }
 	    m_renderContext->setPause (false);

@@ -146,6 +146,20 @@ make
 Once the build process is finished, this should create a new `output` folder containing the app and all the required
 support files to run.
 
+#### 📦 Installation (Optional)
+
+You can install the built binary globally on your system into `/opt/linux-wallpaperengine`:
+
+```bash
+sudo make install
+```
+
+Since the binary is installed in `/opt/`, you'll likely want to create a symlink so you can run `linux-wallpaperengine` from anywhere:
+
+```bash
+sudo ln -s /opt/linux-wallpaperengine/linux-wallpaperengine /usr/local/bin/linux-wallpaperengine
+```
+
 ---
 
 ## 🧪 Usage

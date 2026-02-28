@@ -8,3 +8,4 @@ packaging/archlinux/*
 *-protocol.o
 *-protocol.c
 *-protocol.h
+dms-wallpaperengine-ppd-aware/
